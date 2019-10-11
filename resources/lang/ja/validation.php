@@ -146,9 +146,9 @@ return [
     */
 
     'attributes' => [
-        'title' => 'タイトル',
-        'value' => '評価',
-        'review' => 'レビュー',
+        'title' => '"タイトル"',
+        'value' => '"評価"',
+        'review' => '"レビュー"',
         ],
 
 ];

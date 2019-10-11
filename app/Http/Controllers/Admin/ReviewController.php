@@ -39,11 +39,10 @@ class ReviewController extends Controller
     public function index(Request $request)
     {
         $cond_title = $request->cond_title;
-        if ($cond_title =! '') {
-            $posts = Review::where('title', $cond_title)->get();
-        } else {
-            $posts = Review::all();
-        }
+        
+        
+        $posts = Review::all();
+        
         return view('admin.review.index', ['posts' => $posts, 'cond_title' => $cond_title]);
     }
 }
