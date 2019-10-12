@@ -1,8 +1,24 @@
 body {
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #000;
+  background-color: #8b4513;
   color: #fff;
+}
+
+h1 {
+  color: blue;
+  padding-bottom: 20px;
+  padding-top: 25px;
+  padding-left: 20px;
+}
+
+h2 {
+  padding-bottom: 20px;
+  color: black;
+}
+
+.login-box {
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
 .navbar-laravel {

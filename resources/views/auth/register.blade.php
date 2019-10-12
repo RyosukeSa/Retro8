@@ -1,13 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.outer')
+
+@section('title', 'ユーザー登録画面')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('messages.Register') }}</div>
-
-                <div class="card-body">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="login-box card">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
@@ -73,5 +72,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection

@@ -23,47 +23,33 @@
     </head>
     <body>
         <div id="app">
-            <h1>Retro Game Reviews!</h1>
             <nav class="navbar navbar-expand-md navbar-dark navbar-laravel">
                 <div class="container">
-                        <li>
-                            <a class="navbar-brand" href="{{ url('/home') }}" >
-                                Home
-                            </a>
-                            <a class="navbar-brand" href="{{ url('/admin/review/conf') }}">
-                                Confirm My Reviews
-                            </a>
-                            <a class="navbar-brand" href="{{ url('/admin/review/create') }}" >
-                                Create a Review
-                            </a>
-                            <a class="navbar-brand" href="{{ url('/admin/review/index') }}">
-                                List of Reviews
-                            </a>
-                            <a class="navbar-brand" href="{{ url('/admin/profile/create') }}">
-                                Create a Profile
-                            </a>
-                        </li>
+                   <li>
+                       <a class="navbar-brand" href="{{ url('/') }}">
+                           View Reviews!
+                       </a>
+                       <a class="navbar-brand" href="{{ url('/login') }}">
+                           Login!
+                       </a>
+                        <a class="navbar-brand" href="{{ url('/register') }}" >
+                            Register!
+                        </a>
+                    </li>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div>
+                    
+                    <div class="collapse navbar-collopse" id="navbarSuppedContent">
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
                            
                         </ul>
                         
                         <!-- Right Side Of Navbar -->
-                        <div>
-                            <a class="navbar-brand" href="{{ route('logout') }}"
-                                               onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
-                                Logout
-                            </a>
-        
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                            </form>
-                        </div>
+                        <ul class="navbar-nav ml-auto">
+                            
+                        </ul>
                     </div>
                 </div>
             </nav>

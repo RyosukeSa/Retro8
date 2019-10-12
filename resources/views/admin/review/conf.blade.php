@@ -1,9 +1,12 @@
-@extends('layouts.outer')
+@extends('layouts.admin')
 
-@section('title', 'Reviewの一覧')
+@section('title', 'Reviewページの確認')
 
 @section('content')
     <div class="container">
+        <div class="row">
+            <h2>閲覧ページの確認</h2>
+        </div>
         <hr color="#c0c0c0">
         <div class="row">
             <div class="posts col-md-8 mx-auto mt-3">

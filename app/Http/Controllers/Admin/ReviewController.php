@@ -45,4 +45,41 @@ class ReviewController extends Controller
         
         return view('admin.review.index', ['posts' => $posts, 'cond_title' => $cond_title]);
     }
+    public function conf()
+    {
+        
+        $posts = Review::all()->sortByDesc('updated_at');
+        
+        return view('admin.review.conf', ['posts' => $posts]);
+        
+    }
+    public function edit(Request $request)
+    {
+        $review = Review::find($request->id);
+        if (empty($review)) {
+            abort(404);
+        }
+        return view('admin.review.edit', ['review_form' => $review]);
+    }
+    public function update(Request $request)
+    {
+        $this->validate($request, Review::$rules);
+        
+        $review = Review::find($request->id);
+        
+        $review_form = $request->all();
+        if (isset($review_form['image'])) {
+            $path = $request->file('image')->store('public/image');
+            $review->image_path = basename($path);
+            unset($review_form['image']);
+        } elseif (isset($request->remove)) {
+            $review->image_path = null;
+            unset($review_form['remove']);
+        }
+        unset($review_form['_token']);
+        
+        $review->fill($review_form)->save();
+        
+        return redirect('admin/review/index');
+    }
 }

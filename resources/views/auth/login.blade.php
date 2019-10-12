@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.outer')
 
 @section('title', 'ログイン画面')
 
