@@ -19,6 +19,7 @@ class CreateReviewsTable extends Migration
             $table->string('value');
             $table->string('review');
             $table->integer('user_id');
+            $table->string('nickname');
             $table->string('image_path')->nullable();
             
             $table->timestamps();

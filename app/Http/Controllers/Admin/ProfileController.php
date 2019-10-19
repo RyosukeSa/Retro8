@@ -35,24 +35,25 @@ class ProfileController extends Controller
         unset($form['image']);
         
         $profile->fill($form);
+        $profile->nickname = Auth::user()->name;
         $profile->user_id = Auth::id();
         $profile->save();
         
         
-        return redirect('admin/profile/create');
+        return redirect('admin/home');
     }
     
     public function index()
     {
         $friends = Profile::all();
         
-        
+        $reviews = Review::all()->sortByDesc('updated_at');
         
         $userId = Auth::User()->id;
         $posts = Profile::where('user_id', $userId)->get();
         
         
-        return view('admin.profile.home', ['friends' => $friends, 'posts' => $posts]);
+        return view('admin.profile.home', ['friends' => $friends,'reviews' => $reviews, 'posts' => $posts]);
         
     }
     

@@ -45,25 +45,24 @@
                 </table>
             </div>
             <div class="col-6">
-                <h4>友人の投稿一覧</h4>
+                <h4>最新の投稿一覧</h4>
                 <table class="table table-dark">
                     <thead>
                         <tr>
-                            <th width="20%">ニックネーム</th>
-                            <th width="70%">紹介文</th>
+                            <th width="20%">投稿者</th>
+                            <th width="70%">ゲームタイトル</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($friends as $friend)
+                        @foreach($reviews as $review)
                             <tr>
-                                <th>{{ $friend->nickname }}</th>
-                                <td>{{ \Str::limit($friend->intro, 50) }}</td>
+                                <th>{{ $review->nickname  }}</th>
+                                <td>{{ $review->title }}</td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
-            
         </div>
     </div>           
 </div>

@@ -16,12 +16,6 @@
                         </ul>
                     @endif
                     <div class="form-group row">
-                        <label class="col-md-3" for="nickname">登録名</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" name="nickname" value="{{ old('nickname') }}">
-                        </div>
-                    </div>
-                    <div class="form-group row">
                         <label class="col-md-3" for="age">年齢</label>
                         <div class="col-md-10">
                             <input type="text" class="form-control" name="age" value="{{ old('age') }}">

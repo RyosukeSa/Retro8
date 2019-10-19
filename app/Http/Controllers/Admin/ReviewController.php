@@ -37,6 +37,7 @@ class ReviewController extends Controller
         
         $review->fill($form);
         $review->user_id = Auth::id();
+        $review->nickname = Auth::user()->name;
         $review->save();
         
         return redirect('admin/review/create');
@@ -52,8 +53,7 @@ class ReviewController extends Controller
     
     public function conf()
     {
-        $userId = Auth::User()->id;
-        $posts = Review::where('user_id', $userId)->get()->sortByDesc('updated_at');
+        $posts = Review::all()->sortByDesc('updated_at');
         
         
         return view('admin.review.conf', ['posts' => $posts]);

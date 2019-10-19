@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'Reviewページの確認')
+@section('title', '全レビュー閲覧ページ')
 
 @section('content')
     <div class="container">
         <div class="row">
-            <h2>閲覧ページの確認</h2>
+            <h2>全レビュー一覧</h2>
         </div>
         <hr color="#c0c0c0">
         <div class="row">
@@ -17,8 +17,11 @@
                                 <div class="date">
                                     {{ $post->updated_at->format('Y年m月d日') }}
                                 </div>
+                                <div class="nickname">
+                                    投稿者：{{ $post->nickname }} 
+                                </div>
                                 <div class="title">
-                                    {{ str_limit($post->title, 150) }}
+                                    ゲームタイトル：{{ str_limit($post->title, 150) }}
                                 </div>
                                 <div class="value">
                                     評価：{{ str_limit($post->value, 5) }}
