@@ -17,7 +17,7 @@
                     <table class="table table-dark">
                         <thead>
                             <tr>
-                                <th width="10%">ID</th>
+                                <th width="10%">投稿番号</th>
                                 <th width="20%">ゲームタイトル</th>
                                 <th width="10%">評価</th>
                                 <th width="40%">レビュー</th>
@@ -33,6 +33,9 @@
                                     <td>
                                         <div>
                                             <a href="{{ action('Admin\ReviewController@edit', ['id' => $rev->id]) }}">編集</a>
+                                        </div>
+                                        <div>
+                                            <a href="{{ action('Admin\ReviewController@delete', ['id' => $rev->id]) }}">削除</a>
                                         </div>
                                     </td>
                                 </tr>

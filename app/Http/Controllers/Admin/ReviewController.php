@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 use App\Review;
+
+
 
 class ReviewController extends Controller
 {
@@ -14,6 +17,7 @@ class ReviewController extends Controller
     {
         return view('admin.review.create');
     }
+    
     public function create(Request $request)
     {
         $this->validate($request, Review::$rules);
@@ -32,27 +36,30 @@ class ReviewController extends Controller
         unset($form['image']);
         
         $review->fill($form);
+        $review->user_id = Auth::id();
         $review->save();
         
         return redirect('admin/review/create');
     }
+    
     public function index(Request $request)
     {
-        $cond_title = $request->cond_title;
+        $userId = Auth::User()->id;
+        $posts = Review::where('user_id', $userId)->get();
         
-        
-        $posts = Review::all();
-        
-        return view('admin.review.index', ['posts' => $posts, 'cond_title' => $cond_title]);
+        return view('admin.review.index', ['posts' => $posts]);
     }
+    
     public function conf()
     {
+        $userId = Auth::User()->id;
+        $posts = Review::where('user_id', $userId)->get()->sortByDesc('updated_at');
         
-        $posts = Review::all()->sortByDesc('updated_at');
         
         return view('admin.review.conf', ['posts' => $posts]);
         
     }
+    
     public function edit(Request $request)
     {
         $review = Review::find($request->id);
@@ -61,6 +68,7 @@ class ReviewController extends Controller
         }
         return view('admin.review.edit', ['review_form' => $review]);
     }
+    
     public function update(Request $request)
     {
         $this->validate($request, Review::$rules);
@@ -79,6 +87,15 @@ class ReviewController extends Controller
         unset($review_form['_token']);
         
         $review->fill($review_form)->save();
+        
+        return redirect('admin/review/index');
+    }
+    
+    public function delete(Request $request)
+    {
+        $review = Review::find($request->id);
+        
+        $review->delete();
         
         return redirect('admin/review/index');
     }

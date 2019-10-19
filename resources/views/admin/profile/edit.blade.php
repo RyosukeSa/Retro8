@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Reviewの編集')
+@section('title', 'Profileの編集')
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 mx-auto">
-                <h2>Reviewの編集ページ</h2>
-                <form action="{{ action('Admin\ReviewController@update') }}" method="post" enctype="multipart/form-data">
+         <div class="row">
+             <div class="col-md-8 mx-auto">
+                <h2>Profileの編集</h2>
+                <form action="{{ action('Admin\ProfileController@update') }}" method="post" enctype="multipart/form-data">
                     @if (count($errors) > 0)
                         <ul>
                             @foreach($errors->all() as $e)
@@ -16,29 +16,41 @@
                         </ul>
                     @endif
                     <div class="form-group row">
-                        <label class="col-md-2" for="title">ゲームタイトル</label>
+                        <label class="col-md-3" for="nickname">登録名</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="title" value="{{ $review_form->title }}">
+                            <input type="text" class="form-control" name="nickname" value="{{ $profile_form->nickname }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2" for="value">評価 (駄作1 〜 5良作)</label>
+                        <label class="col-md-3" for="age">年齢</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="value" value="{{ $review_form->value }}">
+                            <input type="text" class="form-control" name="age" value="{{ $profile_form->age }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2" for="review">レビュー</label>
+                        <label class="col-md-3" for="hard">夢中になったゲーム機</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="review" rows="20">{{ $review_form->review }}</textarea>
+                            <input type="text" class="form-control" name="hard" value="{{ $profile_form->hard }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2" for="image">画像</label>
+                        <label class="col-md-3" for="best">人生で最高の一作</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" name="best" value="{{ $profile_form->best }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3" for="intro">自己紹介</label>
+                        <div class="col-md-10">
+                            <textarea class="form-control" name="intro" rows="20">{{ $profile_form->intro }}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                    　  <label class="col-md-2" for="image">画像</label>
                         <div class="col-md-10">
                             <input type="file" class="form-control-file" name="image">
                             <div class="form-test test-info">
-                                設定中: {{ $review_form->image_path }}
+                                設定中: {{ $profile_form->image_path }}
                             </div>
                             <div class="form-check">
                                 <label class="form-check-label">
@@ -49,7 +61,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-10">
-                            <input type="hidden" name="id" value="{{ $review_form->id }}">
+                            <input type="hidden" name="id" value="{{ $profile_form->id }}">
                             {{ csrf_field() }}
                             <input type="submit" class="btn btn-primary" value="更新">
                         </div>

@@ -24,34 +24,28 @@
     <body>
         <div id="app">
             <h1>Retro Game Reviews!</h1>
+            <p><font size="5">{{ Auth::user()->name }} is Login!</font></p>
             <nav class="navbar navbar-expand-md navbar-dark navbar-laravel">
                 <div class="container">
                         <li>
-                            <a class="navbar-brand" href="{{ url('/home') }}" >
+                            <a class="navbar-brand" href="{{ url('/admin/home') }}" >
                                 Home
                             </a>
                             <a class="navbar-brand" href="{{ url('/admin/review/conf') }}">
-                                Confirm My Reviews
+                                Confirm_My_Reviews
                             </a>
                             <a class="navbar-brand" href="{{ url('/admin/review/create') }}" >
-                                Create a Review
+                                Create_a_Review
                             </a>
                             <a class="navbar-brand" href="{{ url('/admin/review/index') }}">
-                                List of Reviews
+                                List_of_Reviews
                             </a>
                             <a class="navbar-brand" href="{{ url('/admin/profile/create') }}">
-                                Create a Profile
+                                Create_a_Profile
                             </a>
                         </li>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+                    
                     <div>
-                        <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav mr-auto">
-                           
-                        </ul>
-                        
                         <!-- Right Side Of Navbar -->
                         <div>
                             <a class="navbar-brand" href="{{ route('logout') }}"

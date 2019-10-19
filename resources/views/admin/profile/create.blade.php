@@ -16,43 +16,43 @@
                         </ul>
                     @endif
                     <div class="form-group row">
-                        <label class="col-md-3" for="title">登録名</label>
+                        <label class="col-md-3" for="nickname">登録名</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                            <input type="text" class="form-control" name="nickname" value="{{ old('nickname') }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-3" for="value">年齢</label>
+                        <label class="col-md-3" for="age">年齢</label>
                         <div class="col-md-10">
                             <input type="text" class="form-control" name="age" value="{{ old('age') }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-3" for="value">夢中になったゲーム機</label>
+                        <label class="col-md-3" for="hard">夢中になったゲーム機</label>
                         <div class="col-md-10">
                             <input type="text" class="form-control" name="hard" value="{{ old('hard') }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-3" for="value">人生で最高の一作</label>
+                        <label class="col-md-3" for="best">人生で最高の一作</label>
                         <div class="col-md-10">
                             <input type="text" class="form-control" name="best" value="{{ old('best') }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-3" for="review">自己紹介</label>
+                        <label class="col-md-3" for="intro">自己紹介</label>
                         <div class="col-md-10">
                             <textarea class="form-control" name="intro" rows="20">{{ old('intro') }}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
-                    　  <label class="col-md-2" for="title">画像</label>
+                    　  <label class="col-md-2" for="image">画像</label>
                         <div class="col-md-10">
                             <input type="file" class="form-control-file" name="image">
                         </div>
                     </div>
                     {{ csrf_field() }}
-                    <input type="submit" class="btn btn-primary" value="更新">
+                    <input type="submit" class="btn btn-primary" value="登録">
                 </form>
             </div>
         </div>

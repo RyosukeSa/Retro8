@@ -1,8 +1,9 @@
 body {
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #8b4513;
-  color: #fff;
+  background-color: #c0c0c0;
+  color: blue;
+  font-weight: bold;
 }
 
 h1 {
