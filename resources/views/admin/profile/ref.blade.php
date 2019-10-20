@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Home')
+@section('title', 'ユーザー閲覧')
 
 @section('content')
 <div class="container">
@@ -8,6 +8,7 @@
         <div class="col-5">
             <div class="card" style="width: 30rem;">
                 @foreach($posts as $post)
+                    <h3>Now, You visit in {{ $post->nickname }}'s room !</h3>
                     <img src="{{ asset('storage/image/' . $post->image_path) }}" class="card-img-top">
                     <div class="card-body">
                         <h5 class="nickname">ニックネーム:{{ $post->nickname }}</h5>
@@ -19,9 +20,6 @@
                         <li class="list-group-item">人生で最高のゲーム:{{ $post->best }}</li>
                     </ul>
                 @endforeach
-                <div class="card-body">
-                    <a href="{{ action('Admin\ProfileController@edit', ['id' => $post->id]) }}" class="card-link">Profile修正</a>
-                </div>
             </div>
         </div>
         <div class="col-7">
@@ -45,7 +43,7 @@
                 </table>
             </div>
             <div class="col-6">
-                <h4>最新の投稿一覧</h4>
+                <h4>{{ $post->nickname }}の投稿一覧</h4>
                 <table class="table table-dark">
                     <thead>
                         <tr>

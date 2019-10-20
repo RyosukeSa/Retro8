@@ -1,15 +1,10 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-
 use App\Review;
-
-
-
+use App\Profile;
 class ReviewController extends Controller
 {
     //
@@ -98,5 +93,18 @@ class ReviewController extends Controller
         $review->delete();
         
         return redirect('admin/review/index');
+    }
+    
+    public function ref(Request $request)
+    {
+        $id = $request->id;
+        
+        $user_id = Profile::where('id', $id)->get();
+        
+        $posts = Profile::where('user_id', $user_id)->get();
+        
+        \Debugbar::info($posts);
+        
+        return view('admin.review.ref', ['posts' => $posts]);
     }
 }

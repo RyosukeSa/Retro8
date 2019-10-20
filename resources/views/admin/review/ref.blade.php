@@ -1,12 +1,10 @@
 @extends('layouts.admin')
 
-@section('title', '全レビュー閲覧ページ')
+@section('title', 'レビュー閲覧ページ')
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <h2>全ユーザーレビュー一覧</h2>
-        </div>
+
         <hr color="#c0c0c0">
         <div class="row">
             <div class="posts col-md-8 mx-auto mt-3">

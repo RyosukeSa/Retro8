@@ -7,9 +7,9 @@
             <h2>レビューリスト</h2>
         </div>
         <div class="row">
-            <div class="col-md-8">
-            
-            </div>
+            <div class="col-md-4">
+                <a href="{{ action('Admin\ReviewController@add') }}" role="button" class="btn btn-primary">新規作成</a>
+            </div>  
         </div>
         <div class="row">
             <div class="list-review col-md-12 mx-auto">

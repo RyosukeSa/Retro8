@@ -45,16 +45,16 @@ class ProfileController extends Controller
     
     public function index()
     {
-        $friends = Profile::all();
+        $userId = Auth::User()->id;
         
+        $posts = Profile::where('user_id', $userId)->get();
+
+        $friends = Profile::where('user_id', '!=', $userId)->get();
         $reviews = Review::all()->sortByDesc('updated_at');
         
-        $userId = Auth::User()->id;
-        $posts = Profile::where('user_id', $userId)->get();
-        
-        
+        \Debugbar::info($friends);
+
         return view('admin.profile.home', ['friends' => $friends,'reviews' => $reviews, 'posts' => $posts]);
-        
     }
     
     public function edit(Request $request)
@@ -86,5 +86,17 @@ class ProfileController extends Controller
         $profile->fill($profile_form)->save();
         
         return redirect('admin/home');
+    }
+    
+    public function ref(Request $request)
+    {
+        $id = $request->id;
+        $userId = Auth::User()->id;
+        
+        $posts = Profile::where('id', $id)->get();
+        $reviews = Review::where('id', $id)->get();
+        $friends = Profile::where('user_id', '!=', $userId )->get();
+
+        return view('admin.profile.ref', ['friends' => $friends,'reviews' => $reviews, 'posts' => $posts]);
     }
 }
