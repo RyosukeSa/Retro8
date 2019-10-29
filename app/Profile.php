@@ -8,6 +8,11 @@ class Profile extends Model
 {
     protected $guarded = array('id');
     
+    public function reviews()
+    {
+        return $this->hasMany('App\Review', 'user_id');
+    }
+    
     //
     public static $rules = array(
         'age' => 'required',

@@ -29,9 +29,6 @@
                                 <div class="review mt-3">
                                     {{ str_limit($post->review, 1500) }}
                                 </div>
-                                <div class="comment">
-                                    <a href="{{ action('Admin\ReviewController@check', ['id' => $post->id]) }}">このレビューにコメント</a>
-                                </div>
                             </div>
                             <div class="image col-md-6 text-right mt-4">
                                 @if ($post->image_path)

@@ -7,20 +7,20 @@
     <div class="row">
         <div class="col-5">
             <div class="card" style="width: 30rem;">
-                @foreach($posts as $post)
-                    <img src="{{ asset('storage/image/' . $post->image_path) }}" class="card-img-top">
+                
+                    <img src="{{ asset('storage/image/' . $profile->image_path) }}" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="nickname">ニックネーム:{{ $post->nickname }}</h5>
-                        <p class="card-text">自己紹介:{{ $post->intro }}</p>
+                        <h5 class="nickname">ニックネーム:{{ $profile->nickname }}</h5>
+                        <p class="card-text">自己紹介:{{ $profile->intro }}</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">年齢:{{ $post->age }}</li>
-                        <li class="list-group-item">夢中になったゲーム機:{{ $post->hard }}</li>
-                        <li class="list-group-item">人生で最高のゲーム:{{ $post->best }}</li>
+                        <li class="list-group-item">年齢:{{ $profile->age }}</li>
+                        <li class="list-group-item">夢中になったゲーム機:{{ $profile->hard }}</li>
+                        <li class="list-group-item">人生で最高のゲーム:{{ $profile->best }}</li>
                     </ul>
-                @endforeach
+                
                 <div class="card-body">
-                    <a href="{{ action('Admin\ProfileController@edit', ['id' => $post->id]) }}" class="card-link">Profile修正</a>
+                    <a href="{{ action('Admin\ProfileController@edit', ['id' => $profile->id]) }}" class="card-link">Profile修正</a>
                 </div>
             </div>
         </div>

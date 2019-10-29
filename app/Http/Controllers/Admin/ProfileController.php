@@ -47,14 +47,20 @@ class ProfileController extends Controller
     {
         $userId = Auth::User()->id;
         
-        $posts = Profile::where('user_id', $userId)->get();
+    
+        
+        $profile = Profile::where('user_id', $userId)->first();
+        
+        if (!$profile) {
+            return redirect('/admin/profile/create');
+        }
 
         $friends = Profile::where('user_id', '!=', $userId)->get();
         $reviews = Review::all()->sortByDesc('updated_at');
         
         \Debugbar::info($friends);
 
-        return view('admin.profile.home', ['friends' => $friends,'reviews' => $reviews, 'posts' => $posts]);
+        return view('admin.profile.home', ['friends' => $friends,'reviews' => $reviews, 'profile' => $profile]);
     }
     
     public function edit(Request $request)
@@ -93,10 +99,12 @@ class ProfileController extends Controller
         $id = $request->id;
         $userId = Auth::User()->id;
         
-        $posts = Profile::where('id', $id)->get();
-        $reviews = Review::where('id', $id)->get();
+        $profile = Profile::where('id', $id)->first();
+        $reviews = Review::where('user_id', $profile->user_id)->get();
+        //$reviews = $profile->reviews;
+        
         $friends = Profile::where('user_id', '!=', $userId )->get();
 
-        return view('admin.profile.ref', ['friends' => $friends,'reviews' => $reviews, 'posts' => $posts]);
+        return view('admin.profile.ref', ['friends' => $friends,'reviews' => $reviews, 'profile' => $profile]);
     }
 }
