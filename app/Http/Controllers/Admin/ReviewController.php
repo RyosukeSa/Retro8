@@ -107,4 +107,19 @@ class ReviewController extends Controller
         
         return view('admin.review.ref', ['posts' => $posts]);
     }
+    
+    public function check(Request $request)
+    {
+        
+        $review = Review::find($request->id);
+        
+        \Debugbar::info($review);
+        
+        return view('admin.review.comment', ['review' => $review]);
+    }
+    
+    public function comment(Request $request)
+    {
+        
+    }
 }

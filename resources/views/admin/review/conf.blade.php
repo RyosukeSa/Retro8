@@ -17,11 +17,11 @@
                                 <div class="date">
                                     {{ $post->updated_at->format('Y年m月d日') }}
                                 </div>
-                                <div class="nickname">
-                                    投稿者：{{ $post->nickname }} 
-                                </div>
                                 <div class="title">
-                                    ゲームタイトル：{{ str_limit($post->title, 150) }}
+                                    <a href="{{ action('Admin\ReviewController@check', ['id' => $post->id]) }}">ゲームタイトル：{{ str_limit($post->title, 150) }}</a>
+                                </div>
+                                <div class="nickname">
+                                    投稿者：{{ $post->nickname }}
                                 </div>
                                 <div class="value">
                                     評価：{{ str_limit($post->value, 5) }}

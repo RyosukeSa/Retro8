@@ -25,6 +25,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('review/delete', 'Admin\ReviewController@delete');
     Route::get('review/ref', 'Admin\ReviewController@ref');
     Route::get('review/comment', 'Admin\ReviewController@check');
+    Route::post('review/comment', 'Admin\ReviewController@comment');
     Route::get('profile/create', 'Admin\ProfileController@add');
     Route::post('profile/create', 'Admin\ProfileController@create');
     Route::get('profile/edit', 'Admin\ProfileController@edit');

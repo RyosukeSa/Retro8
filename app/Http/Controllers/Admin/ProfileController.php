@@ -46,9 +46,7 @@ class ProfileController extends Controller
     public function index()
     {
         $userId = Auth::User()->id;
-        
-    
-        
+
         $profile = Profile::where('user_id', $userId)->first();
         
         if (!$profile) {
