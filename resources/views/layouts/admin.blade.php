@@ -41,9 +41,7 @@
                         <a class="navbar-brand" href="{{ url('/admin/review/index') }}">
                             My_Reviews
                         </a>
-                        <a class="navbar-brand" href="{{ url('/admin/profile/create') }}">
-                            Create_a_Profile
-                        </a>
+                        
                     </li>
                     <div>
                         <a class="navbar-brand" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

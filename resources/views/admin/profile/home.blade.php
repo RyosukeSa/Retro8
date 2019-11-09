@@ -26,7 +26,7 @@
         </div>
         <div class="col-7">
             <div class="col-6">
-                <h4>ユーザー一覧</h4>
+                <a href="{{ action('Admin\ProfileController@frindex') }}"><h4>ユーザー一覧へ</h4></a>
                 <table class="table table-dark">
                     <thead>
                         <tr>
@@ -57,7 +57,7 @@
                         @foreach($reviews as $review)
                             <tr>
                                 <th>{{ $review->nickname  }}</th>
-                                <td>{{ $review->title }}</td>
+                                <td><a href="{{ action('Admin\ReviewController@check', ['id' => $review->id]) }}">{{ $review->title }}</a></td>
                             </tr>
                         @endforeach
                     </tbody>

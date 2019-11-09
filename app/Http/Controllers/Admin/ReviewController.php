@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Review;
 use App\Profile;
+use App\Comment;
+
 class ReviewController extends Controller
 {
     //
@@ -99,27 +101,55 @@ class ReviewController extends Controller
     {
         $id = $request->id;
         
-        $user_id = Profile::where('id', $id)->get();
+        $profile = Profile::where('id', $id)->first();
+        $posts = Review::where('user_id', $profile->user_id)->get();
         
-        $posts = Profile::where('user_id', $user_id)->get();
-        
-        \Debugbar::info($posts);
-        
-        return view('admin.review.ref', ['posts' => $posts]);
+        return view('admin.review.ref', ['posts' => $posts, 'profile' => $profile]);
     }
     
     public function check(Request $request)
     {
+        $user_id = Auth::user()->id;
+        
+        $review_id = $request->id;
         
         $review = Review::find($request->id);
         
-        \Debugbar::info($review);
+        $comments = Comment::where('review_id', $review_id)->get()->sortByDesc('updated_at');
         
-        return view('admin.review.comment', ['review' => $review]);
+        \Debugbar::info($review);
+        \Debugbar::info($comments);
+        
+        return view('admin.review.comment', ['user_id' => $user_id, 'review' => $review, 'comments' => $comments]);
     }
     
     public function comment(Request $request)
     {
+        $this->validate($request, Comment::$rules);
+    
+        $comment = new Comment;
         
+        unset($request['_token']);
+        
+        $comment->comment = $request->comment;
+        $comment->nickname = Auth::user()->name;
+        $comment->user_id = Auth::id();
+        $comment->review_id = $request->id;
+        $comment->save();
+        
+        return redirect('admin/review/comment?id=' . $request->id);
     }
+    
+    public function comdelete(Request $request)
+    {
+        $comment = Comment::where('id', $request->id)->first();
+        //$comment = Comment::find($request->id);
+        
+        $review_id = $comment->review_id;
+        
+        $comment->delete();
+        
+        return redirect('admin/review/comment?id=' . $review_id);
+    }
+    
 }

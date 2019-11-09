@@ -1,39 +1,32 @@
 @extends('layouts.admin')
 
-@section('title', 'レビュー閲覧ページ')
+@section('title', 'ユーザー一覧ページ')
 
 @section('content')
     <div class="container">
-
-        <hr color="#c0c0c0">
-        <h4>{{ $profile->nickname }}'s Review List</h4>
         <div class="row">
-            
+            <h2>ユーザー一覧</h2>
+        </div>
+        <hr color="#c0c0c0">
+        <div class="row">
             <div class="posts col-md-8 mx-auto mt-3">
-                
                 @foreach($posts as $post)
                     <div class="post">
                         <div class="row">
                             <div class="text col-md-6">
-                                <div class="date">
-                                    {{ $post->updated_at->format('Y年m月d日') }}
+                                <div class="nickname">
+                                    登録id：{{ $post->user_id }}
                                 </div>
                                 <div class="nickname">
-                                    投稿者：{{ $post->nickname }} 
-                                </div>
-                                <div class="title">
-                                    <a href="{{ action('Admin\ReviewController@check', ['id' => $post->id]) }}">ゲームタイトル：{{ str_limit($post->title, 150) }}</a>
-                                </div>
-                                <div class="value">
-                                    評価：{{ str_limit($post->value, 5) }}
+                                    ニックネーム：<a href="{{ action('Admin\ProfileController@ref', ['id' => $post->id]) }}">{{ $post->nickname }}</a>
                                 </div>
                                 <div class="review mt-3">
-                                    {{ str_limit($post->review, 1500) }}
+                                    紹介文：{{ str_limit($post->intro, 1500) }}
                                 </div>
                             </div>
                             <div class="image col-md-6 text-right mt-4">
                                 @if ($post->image_path)
-                                    <img src="{{ asset('storage/image/' . $post->image_path) }}">
+                                    <img src="{{ asset('storage/image/' . $post->image_path) }}" width="300" height="200">
                                 @endif
                             </div>
                         </div>

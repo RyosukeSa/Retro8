@@ -33,7 +33,7 @@
                     <tbody>
                         @foreach($friends as $friend)
                             <tr>
-                                <th><a href="{{ action('Admin\ProfileController@ref', ['id' => $friend->id]) }}">{{ $friend->nickname }}</a></th>
+                                <th><a href="{{ action('Admin\ReviewController@ref', ['id' => $friend->id]) }}">{{ $friend->nickname }}</a></th>
                                 <td>{{ \Str::limit($friend->intro, 50) }}</td>
                             </tr>
                         @endforeach
@@ -41,19 +41,19 @@
                 </table>
             </div>
             <div class="col-6">
-                <h4>{{ $profile->nickname }}の投稿一覧</h4>
+                <h4><a href="{{ action('Admin\ReviewController@ref', ['id' => $profile->id]) }}">{{ $profile->nickname }}の投稿一覧</a></h4>
                 <table class="table table-dark">
                     <thead>
                         <tr>
-                            <th width="20%">投稿者</th>
+                            
                             <th width="70%">ゲームタイトル</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($reviews as $review)
                             <tr>
-                                <th>{{ $review->nickname  }}</th>
-                                <td>{{ $review->title }}</td>
+                                
+                                <td><a href="{{ action('Admin\ReviewController@check', ['id' => $review->id]) }}">{{ $review->title }}</a></td>
                             </tr>
                         @endforeach
                     </tbody>

@@ -14,6 +14,13 @@ class ProfileController extends Controller
     //
     public function add()
     {
+        $userId = Auth::User()->id;
+        $prof = Profile::where('user_id', $userId)->first();
+        
+        if ($prof != '') {
+            return redirect('/admin/home');
+        }
+        
         return view('admin.profile.create');
     }
     
@@ -23,23 +30,22 @@ class ProfileController extends Controller
         
         $profile = new Profile;
         $form = $request->all();
-        
+            
         if (isset($form['image'])) {
             $path = $request->file('image')->store('public/image');
             $profile->image_path = basename($path);
         } else {
             $profile->image_path = null;
         }
-        
+            
         unset($form['_token']);
         unset($form['image']);
-        
+            
         $profile->fill($form);
         $profile->nickname = Auth::user()->name;
         $profile->user_id = Auth::id();
         $profile->save();
-        
-        
+
         return redirect('admin/home');
     }
     
@@ -53,8 +59,8 @@ class ProfileController extends Controller
             return redirect('/admin/profile/create');
         }
 
-        $friends = Profile::where('user_id', '!=', $userId)->get();
-        $reviews = Review::all()->sortByDesc('updated_at');
+        $friends = Profile::where('user_id', '!=', $userId)->take(5)->get()->sortByDesc('user_id');
+        $reviews = Review::all()->sortByDesc('updated_at')->take(5);
         
         \Debugbar::info($friends);
 
@@ -104,5 +110,14 @@ class ProfileController extends Controller
         $friends = Profile::where('user_id', '!=', $userId )->get();
 
         return view('admin.profile.ref', ['friends' => $friends,'reviews' => $reviews, 'profile' => $profile]);
+    }
+    
+    public function frindex()
+    {
+        $userId = Auth::User()->id;
+        
+        $posts = Profile::where('user_id', '!=', $userId)->get()->sortByDesc('user_id');
+        
+        return view('admin.profile.index', ['posts' => $posts]);    
     }
 }
